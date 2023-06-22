@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data" class="w-100 m-auto border p-4">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-8">
+                <label for="">Kullanıcı Adı</label>
+                <input type="text" name="kullanici" id="" class="form-control" value="{{user.profil}}">
+                <label for="">Email</label>
+                <input type="email" name="email" id="" class="form-control" value="{{user.email}}">
+                <label for="">Meslek</label>
+                <input type="text" name="meslek" id="" class="form-control" value="{{user.profil.job}}">
+                <label for="">Twitter</label>
+                <input type="text" name="twitter" id="" class="form-control" value="{{user.profil.twitter}}">
+                <label for="">Facebook</label>
+                <input type="text" name="facebook" id="" class="form-control" value="{{user.profil.facebook}}">
+                <label for="">Instagram</label>
+                <input type="text" name="instagram" id="" class="form-control" value="{{user.profil.instagram}}">
+                <label for="">Linkedin</label>
+                <input type="text" name="linkedin" id="" class="form-control" value="{{user.profil.linkedin}}">
+            </div>
+            <div class="col-4">
+                <label for="">Profil Resmi :</label>
+                <img src="{{user.profil.ppic.url}}" width="100px" height="100px" class="ms-2 rounded-3" alt="">
+                <input type="file" name="resim" id="" class="form-control mt-2">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <input type="submit" value="Düzenle" class="btn btn-primary mt-2">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock content %}

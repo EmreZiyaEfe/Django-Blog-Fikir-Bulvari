@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.navbar-right-icons {
+    color: #454545;
+}
+
+.navbar-center-icons {
+    color: #454545;
+}
+
+.navbar-right-icons  {
+    text-decoration: none;
+
+}
+
+/* card blog */
+
+.card-post {
+    width: 340px;
+    height: 457px;
+}
+
+.card-post-meta {
+    font-size: 14px;
+    font-style: bold;
+}
+
+.card-post-meta span {
+    color: #999999;
+}
+
+.card-post a {
+    text-decoration: none;
+    color: #454545;
+}
+
+.card-post-title {
+    font-size: 18px;
+}
+
+.card-post-text {
+    font-size: 16px;
+}
+
+/* card author section */
+
+
+.author-name strong {
+    font-size: 14px;
+}
+
+.card-author-name span {
+    font-size: 13px;
+    color: #888888;
+}
+
+
+.single-post-content p {
+    font-size: 18px;
+}
+
+.single-post-content .date {
+    color: #999999;
+}
+
+.single-post-content .lead {
+    font-size: 20px;
+    color: #454545;
+}
+
+.single-post-content .author-name a {
+    text-decoration: none;
+    color: #454545;
+}
+
+.social span {
+    color: #454545;
+}
+
+/* Single post*/
+
+.single-post-content .card-post-meta a {
+    text-decoration: none;
+    color: #454545;
+}
+
+/*.single-post-section a {
+    text-decoration: none;
+    color: #888888;
+}
+.single-post-section .author-name-text {
+    font-size: 18px;
+}
+
+.single-post-section .date {
+    font-size: 16px;
+} */
+
+
+/* Sitefooter */
+
+.site-footer .widget .copy-right-text {
+    font-size: 14px;
+    color: #888888;
+}
+
+/* .site-footer .widget {
+    margin-bottom: 40px;
+    display: block;
+}
+
+.social {
+    top: 5px;
+    position: relative;
+    margin: 0;
+}
+
+.site-footer .social li a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background: #ccc;
+    border-radius: 40%;
+}
+
+.site-footer .social li a > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+} */
+
+/* author posts */
+.author-posts-content .author-posts-text {
+    font-size: 14px;
+}
+
+.author-posts-content .card-body a {
+    text-decoration: none;
+    color: #454545;
+}

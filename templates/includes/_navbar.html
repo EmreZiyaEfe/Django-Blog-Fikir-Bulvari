@@ -1,0 +1,60 @@
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg border-bottom">
+    <div class="container">
+        <a class="navbar-brand" href="/">Fikir Bulvarı</a>
+        <form class="ms-5" role="search">
+            <input class="form-control rounded-3" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 ms-auto mb-lg-0">
+                <!-- <li><a href="#"><i class="navbar-center-icons bi bi-pinterest me-3"></i></a></li> -->
+                <li><a href=""><i class="navbar-center-icons bi bi-twitter me-3"></i></a></li>
+                <li><a href="#"><i class="navbar-center-icons bi bi-facebook me-3"></i></a></li>
+                <li><a href=""><i class="navbar-center-icons bi bi-instagram me-3"></i></a></li>
+                <li><a href=""><i class="navbar-center-icons bi bi-linkedin"></i></a></li>
+            </ul>
+
+
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mb-2 ms-auto mb-lg-0">
+                <li class="mt-2"><a href="/type-post/"><i class="navbar-right-icons bi bi-pencil-square me-3 fs-5"></i></a></li>
+                <!-- <li><a href=""><i class="navbar-right-icons bi bi-bell me-3"></i></a></li> -->
+                <!-- <li><a href=""><img class="img rounded-5" src="https://via.placeholder.com/30x30" alt=""></a></li> -->
+                <!-- <li><a href=""><i class="navbar-right-icons bi bi-person"></i></a></li> -->
+                <!-- <li><a class="navbar-right-icons me-2 text-uppercase" href="#">{{request.user}}</a></li> -->
+                <!-- <li><a class="navbar-right-icons me-2 px-1" href="#"><img src="{{user.profil.ppic.url}}" width="30" height="30" class="rounded-5" alt=""></a></li> -->
+                <!-- <li><a class="navbar-right-icons me-2 px-1 text-capitalize" href="">{{request.user}}</a></li> -->
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{user.profil.ppic.url}}" width="30" height="30" class="rounded-5" alt="">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/user/profile-edit/">Hesap</a></li>
+                        <li><a class="dropdown-item" href="/user/profile-edit/">Şifre Degiştir</a></li>
+                        <li class=""><a class="dropdown-item text-capitalize" href="/user/logout/">çıkış yap</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav mb-2 ms-auto mb-lg-0">
+                <!-- <li><a href=""><i class="navbar-right-icons bi bi-bell me-3"></i></a></li> -->
+                <!-- <li><a href=""><img class="img rounded-5" src="https://via.placeholder.com/30x30" alt=""></a></li> -->
+                <!-- <li><a href=""><i class="navbar-right-icons bi bi-person"></i></a></li> -->
+                <li><a class="navbar-right-icons me-2" href="/user/login/">Giriş Yap</a></li>
+                <li><a class="navbar-right-icons me-2" href="/user/register/">Kayıt Ol</a></li>
+            </ul>
+
+            {% endif %}
+
+
+        </div>
+    </div>
+</nav>
+
+<!-- Navbar End -->

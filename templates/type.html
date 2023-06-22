@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data" class="w-80 m-auto border p-4">
+        {% csrf_token %}
+        <label for="">Kategori : </label>
+        <select class="form-control" name="kategori" id="">
+            <option value="">----------</option>
+            {% for kategori in kategoriler %}
+            <option value="{{kategori.id}}">{{kategori.category}}</option>
+            {% endfor %}
+        </select>
+        <label for="">Başlık : </label>
+        <input type="text" name="baslik" id="" class="form-control">
+        <label for="">Paragraf :</label>
+        <textarea name="paragraf" id="editor" cols="30" rows="10" class="form-control"></textarea>
+        <label for="">Resim : </label>
+        <input type="file" name="resim" id="" class="form-control">
+        <input type="submit" value="Yayınla" class="btn btn-primary mt-2">
+    </form>
+</div>
+<script src="/static/ckeditor/ckeditor.js"></script>
+
+{% endblock content %}  
