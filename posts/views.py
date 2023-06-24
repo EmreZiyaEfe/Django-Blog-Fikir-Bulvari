@@ -22,7 +22,7 @@ def singlePost(request, postId, slug):
 
 def authorPosts(request, author_id):
     author_posts = Posts.objects.filter(author_id=author_id)
-    author_info = Posts.objects.all()
+    author_info = Profil.objects.get(id=author_id)
     context = {
         'author_posts' : author_posts,
         'author_info' : author_info
