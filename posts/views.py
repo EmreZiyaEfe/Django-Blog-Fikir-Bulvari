@@ -20,11 +20,20 @@ def singlePost(request, postId, slug):
     return render(request, 'singlePost.html', context)
 
 
+def authorPosts(request, author_id):
+    author_posts = Posts.objects.filter(author_id=author_id)
+    author_info = Posts.objects.all()
+    context = {
+        'author_posts' : author_posts,
+        'author_info' : author_info
+    }
+    return render(request, 'authorPosts.html', context)
+
+
 
 
 @login_required(login_url='login')
 def typePost(request):
-    kategoriler = Kategori.objects.all()
     if  request.method == 'POST':
         category = request.POST['kategori']
         title = request.POST['baslik']
@@ -43,8 +52,6 @@ def typePost(request):
         post.save()
         messages.success(request, 'Post Yayınlandı')
         return redirect('index')
+    return render(request, 'type.html')
 
-    context = {
-        'kategoriler' : kategoriler
-    }
-    return render(request, 'type.html', context)
+
