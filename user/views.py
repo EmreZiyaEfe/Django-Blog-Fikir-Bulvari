@@ -98,3 +98,32 @@ def update(request):
         messages.success(request, 'Bilgiler güncellendi')
         return redirect('profile-edit')
     return render(request, 'profile-edit.html')
+
+
+def changePassword(request):
+    if request.method == 'POST':
+        eski = request.POST['eski']
+        yeni = request.POST['yeni']
+        yeni2 = request.POST['yeni2']
+
+        user = authenticate(request, username = request.user, password = eski)
+
+        if user is not None:
+            if yeni == yeni2:
+                if eski == yeni:
+                    messages.error(request, 'Yeni şifreniz eski şifreniz ile aynı olmamalıdır!')
+                elif len(yeni) < 6:
+                    messages.error(request, 'Yeni şifreniz 6 karakterden az olmamalıdır!')
+                # elif kullanici.lower() in yeni.lower():
+                #     messages.error(request, 'Şifre kullanıcı adını içermemelidir!')
+                
+                else:
+                    user.set_password(yeni)
+                    user.save()
+                    messages.success(request, 'Şifreniz değiştirildi.')
+                    return redirect('login')
+            else:
+                messages.error(request, 'Yeni şifreleriniz uyuşmuyor! Lütfen tekrar deneyin.')
+        else:
+            messages.error(request, 'Mevcut şifreniz hatalı!')
+    return render(request, 'change-password.html')
