@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+
+    {% load humanize %}
+
+
+    {% block content %}
+
+
+    <div class="container-fluid mt-4">
+        <h1 class="mb-5 text-center">Filter Posts</h1>
+
+
+        <div class="row">
+            <div class="col-9">
+                <div class="row">
+                    {% for posts in posts %}
+                    <div class="col-4 mb-3">
+                        <div class="card card-post" style="width: 20rem; height: 32rem;">
+                            <a href="/single-post/{{posts.id}}/{{posts.slug}}/"><img src="{{posts.image.url}}"
+                                    class="card-img-top bg-light" alt="{{posts.title}}"
+                                    style="width: 20rem; height: 12rem;"></a>
+                            <div class="card-body">
+                                <div class="card-post-meta mt-3  mb-2">
+                                    <a class="category fw-bold" href="">{{posts.category}}</a>
+                                    <span class="date">— {{posts.date}}</span>
+                                </div>
+                                <h6 class="card-post-title fw-bold mb-3"><a
+                                        href="/single-post/{{posts.id}}/{{posts.slug}}/">{{posts.title}}</a></h6>
+                                <p class="card-text">{{posts.content | slice:"150" | safe}}...</p>
+                                <div class="card-author-section">
+                                    <a class="d-flex" href="/author-posts/{{posts.author.id}}/">
+                                        <div class="author-pic">
+                                            <img src="{{posts.author.ppic.url}}" width="50px" height="50px"
+                                                class="rounded-circle ms-3" alt="{{posts.author}}">
+                                        </div>
+                                        <div class="author-name ms-3">
+                                            <strong class="text-capitalize">{{posts.author}}</strong>
+                                            <br>
+                                            <span class="text-capitalize">{{posts.author.job}}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-3">
+                <h5 class="text-center">KATEGORİLER</h5>
+                <div class="row">
+                    <div class="col">
+                        <div class="list-group mb-5">
+                            {% for kategori in kategoriler %}
+                            <a href="#" class="list-group-item list-group-item-action">{{kategori.category}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <form class="d-flex " role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-secondary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    {% endblock content %}

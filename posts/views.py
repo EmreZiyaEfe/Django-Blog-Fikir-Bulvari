@@ -4,12 +4,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 # Create your views here.
 
+# <-------------------------------*******************************------------------------------->
+
+#index sayfasında postların görünmesini sağlayan fonksiyon
+
 def index(request):
     postlar = Posts.objects.all()
     context = {
         'posts' : postlar
     }
     return render(request, 'index.html', context)
+
+#index sayfasında postların görünmesini sağlayan fonksiyon sonu
+
+# <-------------------------------*******************************------------------------------->
+
+# Postun detayını göstermesi için gerekli fonksiyon
 
 
 def singlePost(request, postId, slug):
@@ -19,6 +29,11 @@ def singlePost(request, postId, slug):
     }
     return render(request, 'singlePost.html', context)
 
+# Postun detayını göstermesi için gerekli fonksiyon sonu
+
+# <-------------------------------*******************************------------------------------->
+
+# Yazara ait postların hepsini sayfada göstermek için getiren fonksiyon
 
 def authorPosts(request, author_id):
     author_posts = Posts.objects.filter(author_id=author_id)
@@ -29,8 +44,21 @@ def authorPosts(request, author_id):
     }
     return render(request, 'authorPosts.html', context)
 
+# Yazara ait postların hepsini sayfada göstermek için getiren fonksiyon sonu
+
+# <-------------------------------*******************************------------------------------->
+
+# Bir kategoriye ait postları getirmeyi sağlayan fonksiyon
+
+def postsFilter(request):
+    return render(request, 'posts-filter.html')
+
+# Bir kategoriye ait postları getirmeyi sağlayan fonksiyon sonu
+
+# <-------------------------------*******************************------------------------------->
 
 
+#Sayfada Post Yazmak için gerekli fonksiyon
 
 @login_required(login_url='login')
 def typePost(request):
@@ -55,3 +83,4 @@ def typePost(request):
     return render(request, 'type.html')
 
 
+#Sayfada Post Yazmak için gerekli fonksiyon sonu
