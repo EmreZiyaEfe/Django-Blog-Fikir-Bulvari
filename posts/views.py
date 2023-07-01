@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 # Create your views here.
 
 # <-------------------------------*******************************------------------------------->
@@ -10,8 +11,17 @@ from django.contrib import messages
 
 def index(request):
     postlar = Posts.objects.all()
+    search = ''
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+        postlar = Posts.objects.filter(
+            Q(title__icontains = search) |
+            Q(category__category__icontains = search) |
+            Q(author__user__username__icontains = search)
+        )
     context = {
-        'posts' : postlar
+        'posts' : postlar,
+        'search' :search
     }
     return render(request, 'index.html', context)
 
