@@ -11,17 +11,8 @@ from django.db.models import Q
 
 def index(request):
     postlar = Posts.objects.all()
-    search = ''
-    if request.GET.get('search'):
-        search = request.GET.get('search')
-        postlar = Posts.objects.filter(
-            Q(title__icontains = search) |
-            Q(category__category__icontains = search) |
-            Q(author__user__username__icontains = search)
-        )
     context = {
-        'posts' : postlar,
-        'search' :search
+        'posts' : postlar
     }
     return render(request, 'index.html', context)
 

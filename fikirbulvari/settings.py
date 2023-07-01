@@ -83,7 +83,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'posts.context_processors.get_category',
-                # 'posts.context_processors.get_search'
             ],
         },
     },
