@@ -8,5 +8,10 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ['author', 'title']
     readonly_fields = ['id', 'date', 'slug']
 
+class KategoriAdmin(admin.ModelAdmin):
+    list_display = ['id', 'category']
+    readonly_fields = ['id', 'category']
+
 admin.site.register(Posts, PostAdmin)
-admin.site.register(Kategori)
+admin.site.register(Kategori, KategoriAdmin)
+# admin.site.register(Kategori)

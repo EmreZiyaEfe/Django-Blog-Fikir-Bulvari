@@ -50,8 +50,13 @@ def authorPosts(request, author_id):
 
 # Bir kategoriye ait postları getirmeyi sağlayan fonksiyon
 
-def postsFilter(request):
-    return render(request, 'posts-filter.html')
+def postsFilter(request, category_name):
+    category = Kategori.objects.get(category = category_name)
+    posts_filter = category.posts.all()
+    context = {
+        'posts_filter' : posts_filter
+    }
+    return render(request, 'posts-filter.html', context)
 
 # Bir kategoriye ait postları getirmeyi sağlayan fonksiyon sonu
 

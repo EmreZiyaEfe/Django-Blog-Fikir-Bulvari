@@ -54,7 +54,7 @@
                                     style="width: 20rem; height: 12rem;"></a>
                             <div class="card-body">
                                 <div class="card-post-meta mt-3  mb-2">
-                                    <a class="category fw-bold" href="">{{posts.category}}</a>
+                                    <a class="category fw-bold" href="/posts-filter/{{posts.category}}/">{{posts.category}}</a>
                                     <span class="date">— {{posts.date}}</span>
                                 </div>
                                 <h6 class="card-post-title fw-bold mb-3"><a
@@ -85,7 +85,7 @@
                     <div class="col">
                         <div class="list-group mb-5">
                             {% for kategori in kategoriler %}
-                            <a href="#" class="list-group-item list-group-item-action">{{kategori.category}}</a>
+                            <a href="/posts-filter/{{kategori.category}}/" class="list-group-item list-group-item-action">{{kategori.category}}</a>
                             {% endfor %}
                         </div>
                     </div>

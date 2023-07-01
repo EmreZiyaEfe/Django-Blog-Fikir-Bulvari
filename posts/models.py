@@ -15,7 +15,7 @@ class Kategori(models.Model):
 
 class Posts(models.Model):
     author = models.ForeignKey(Profil, on_delete = models.CASCADE, verbose_name = 'Yazar')
-    category = models.ForeignKey(Kategori, on_delete=models.SET_NULL, null=True, verbose_name='Kategori')
+    category = models.ForeignKey(Kategori, on_delete=models.SET_NULL, null=True, verbose_name='Kategori', related_name='posts')
     title = models.CharField(max_length = 100, verbose_name = 'Başlık')
     content = RichTextUploadingField(null=True, blank=True, verbose_name = 'Paragraf')
     image = models.ImageField(upload_to = 'postImages/')
