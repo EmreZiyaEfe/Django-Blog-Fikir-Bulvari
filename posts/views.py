@@ -90,3 +90,26 @@ def typePost(request):
 
 
 #Sayfada Post Yazmak için gerekli fonksiyon sonu
+
+
+#Sayfada arama yapmak için gerekli fonksiyon
+
+def search_posts(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        postlar = Posts.objects.filter(
+            Q(title__icontains = searched) |
+            Q(category__category__icontains = searched) |
+            Q(author__user__username__icontains = searched)
+        )
+        context = {
+            'searched': searched,
+            'postlar': postlar
+        }
+        return render(request, 'post-search.html', context)
+    else:
+
+        return render(request, 'post-search.html')
+
+
+#Sayfada arama yapmak için gerekli fonksiyon sonu

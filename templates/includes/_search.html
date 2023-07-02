@@ -1,4 +1,5 @@
-<form class="d-flex" method="GET" action="/" role="search">
-    <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" value="{{search}}">
+<form class="d-flex" method="POST" action="/search-posts/" role="search">
+    {% csrf_token %}
+    <input class="form-control me-2" name="searched" type="search" placeholder="Search" aria-label="Search" value="{{search}}">
     <button class="btn btn-secondary" type="submit">Search</button>
 </form>
