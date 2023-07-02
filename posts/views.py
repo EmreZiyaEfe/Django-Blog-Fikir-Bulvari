@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -38,10 +38,18 @@ def singlePost(request, postId, slug):
 
 def authorPosts(request, author_id):
     author_posts = Posts.objects.filter(author_id=author_id)
-    author_info = Profil.objects.get(id=author_id)
+    author_info = get_object_or_404(Profil, id=author_id)
+    post = author_posts
+    # author_info = Profil.objects.get(id=author_id)
+    if request.method == 'POST':
+        if 'sil' in request.POST:
+            post.delete()
+            messages.success(request, 'Post Silindi')
+            return redirect('author-posts')
     context = {
         'author_posts' : author_posts,
-        'author_info' : author_info
+        'author_info' : author_info,
+        'user':request.user
     }
     return render(request, 'authorPosts.html', context)
 

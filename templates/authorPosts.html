@@ -17,15 +17,24 @@
                                 <img src="{{post.image.url}}" style="height: 11rem;"class="img-fluid rounded-start object-fit-fill"
                                     alt="...">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 position-relative">
                                 <div class="card-body">
                                     <div class="card-post-meta mb-1">
-                                        <a class="category fw-bold" href="/posts-filter/{{posts.category}}/">{{post.category}}</a>
+                                        <a class="category fw-bold" href="/posts-filter/{{post.category}}/">{{post.category}}</a>
                                         <span class="date">— {{post.date}}</span>
                                     </div>
+                                    
                                     <h5 class="card-title author-posts-title mb-2"><a href="/single-post/{{post.id}}/{{post.slug}}/">{{post.title}}</a></h5>
                                     <p class="card-text author-posts-text">{{post.content |safe | slice:"150"}}...</p>
                                 </div>
+                                {% if user.is_authenticated and author_info.user == user%}
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <a href="" class="btn btn-warning position-absolute me-5 top-0 end-0">Düzenle</a>
+                                        <input type="hidden" name="post_id" value="{{post.id}}">
+                                        <input  type="submit" value="Sil"  name="sil" class="btn btn-danger position-absolute top-0 end-0">
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
