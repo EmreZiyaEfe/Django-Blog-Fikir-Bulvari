@@ -39,13 +39,14 @@ def singlePost(request, postId, slug):
 def authorPosts(request, author_id):
     author_posts = Posts.objects.filter(author_id=author_id)
     author_info = get_object_or_404(Profil, id=author_id)
-    post = author_posts
     # author_info = Profil.objects.get(id=author_id)
     if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(author_posts, id = post_id)
         if 'sil' in request.POST:
             post.delete()
             messages.success(request, 'Post Silindi')
-            return redirect('author-posts')
+            return redirect('author-posts',author_id=author_id)
     context = {
         'author_posts' : author_posts,
         'author_info' : author_info,
