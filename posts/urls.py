@@ -8,4 +8,5 @@ urlpatterns = [
     path('author-posts/<int:author_id>/', authorPosts, name='author-posts'),
     path('posts-filter/<str:category_name>/', postsFilter, name='posts-filter'),
     path('search-posts/', search_posts, name='search-posts'),
+    path('edit-post/<int:author_id>/<int:post_id>/', editPost, name='edit-post')
 ]

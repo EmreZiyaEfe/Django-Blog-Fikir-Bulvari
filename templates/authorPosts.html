@@ -30,7 +30,9 @@
                                 {% if user.is_authenticated and author_info.user == user%}
                                     <form action="" method="POST">
                                         {% csrf_token %}
-                                        <a href="" class="btn btn-warning position-absolute me-5 top-0 end-0">Düzenle</a>
+                                        <input type="hidden" name="post_id" value="{{post_id}}">
+                                        <!-- <a href="/edit-post/{{author.id}}/{{post.id}}/" class="btn btn-warning position-absolute me-5 top-0 end-0">Düzenle</a> -->
+                                        <a href="/edit-post/{{author.id}}/{{post.id}}/"><input type="submit" value="Düzenle" name="duzenle" class="btn btn-warning position-absolute me-5 top-0 end-0"></a>
                                         <input type="hidden" name="post_id" value="{{post.id}}">
                                         <input  type="submit" value="Sil"  name="sil" class="btn btn-danger position-absolute top-0 end-0">
                                     </form>

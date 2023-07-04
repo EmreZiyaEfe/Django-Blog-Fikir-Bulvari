@@ -39,7 +39,6 @@ def singlePost(request, postId, slug):
 def authorPosts(request, author_id):
     author_posts = Posts.objects.filter(author_id=author_id)
     author_info = get_object_or_404(Profil, id=author_id)
-    # author_info = Profil.objects.get(id=author_id)
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
         post = get_object_or_404(author_posts, id = post_id)
@@ -47,6 +46,11 @@ def authorPosts(request, author_id):
             post.delete()
             messages.success(request, 'Post Silindi')
             return redirect('author-posts',author_id=author_id)
+        
+        if 'duzenle' in request.POST:
+            return redirect('edit-post', author_id=author_id, post_id=post_id)
+
+
     context = {
         'author_posts' : author_posts,
         'author_info' : author_info,
@@ -122,3 +126,28 @@ def search_posts(request):
 
 
 #Sayfada arama yapmak için gerekli fonksiyon sonu
+
+
+def editPost(request, author_id, post_id):
+    post = get_object_or_404(Posts, author_id=author_id, id=post_id)
+
+    if request.method == 'POST':
+        title = request.POST['baslik']
+        content = request.POST['paragraf']
+        # image = request.FILES['resim']
+
+        post.title = title
+        post.content = content
+        # post.image = image
+        if 'resim' in request.FILES:
+            image = request.FILES['resim']
+            post.image = image
+
+        post.save()
+        messages.success(request, 'Post başarıyla düzenlendi')
+        return redirect('author-posts', author_id=author_id)
+    
+    context = {
+        'post': post
+    }
+    return render(request, 'edit-post.html', context)
