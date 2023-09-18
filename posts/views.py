@@ -127,18 +127,23 @@ def search_posts(request):
 
 #Sayfada arama yapmak için gerekli fonksiyon sonu
 
+#Post düzenlemesi yapmak için gerekli fonksiyon
 
 def editPost(request, author_id, post_id):
+
+    #Yazar ve post idsine göre seçilen postu alıyoruz
+    
     post = get_object_or_404(Posts, author_id=author_id, id=post_id)
 
     if request.method == 'POST':
         title = request.POST['baslik']
         content = request.POST['paragraf']
-        # image = request.FILES['resim']
 
         post.title = title
         post.content = content
-        # post.image = image
+
+        #Post metodunda resim eklenip eklenmediğini sorguladığımız bölüm
+
         if 'resim' in request.FILES:
             image = request.FILES['resim']
             post.image = image
@@ -151,3 +156,5 @@ def editPost(request, author_id, post_id):
         'post': post
     }
     return render(request, 'edit-post.html', context)
+
+#Post düzenlemesi yapmak için gerekli fonksiyon sonu
